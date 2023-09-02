@@ -1,0 +1,20 @@
+
+# 
+# MongoDB properties
+
+
+spring.data.mongodb.uri=mongodb+srv://sarangvirdhe96:nPv7fRblAttLDMKz@cluster0.pnoqrzt.mongodb.net/<payment>
+
+
+spring.data.mongodb.database=payment
+spring.data.mongodb.username='sarangvirdhe96'
+spring.data.mongodb.password='nPv7fRblAttLDMKz'
+
+spring.main.allow-bean-definition-overriding=true
+
+
+# Eureka Client properties
+server.port=8083
+spring.application.name=payment-service
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+

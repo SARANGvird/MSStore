@@ -1,0 +1,13 @@
+
+#nPv7fRblAttLDMKz   sarangvirdhe96
+# MongoDB properties
+spring.data.mongodb.host=localhost
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=paymentservice
+
+# Eureka Client properties
+server.port=8083
+spring.application.name=payment-service
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+spring.main.allow-bean-definition-overriding=true

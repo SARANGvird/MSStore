@@ -1,0 +1,18 @@
+
+# 
+
+# PostgreSQL properties
+spring.datasource.url=jdbc:postgresql://localhost:3307/paymentservice
+spring.datasource.username=postgres
+spring.datasource.password=solution
+spring.datasource.driver-class-name=org.postgresql.Driver
+# Hibernate properties
+spring.jpa.hibernate.ddl-auto=update
+
+
+# Eureka Client properties
+server.port=8083
+spring.application.name=payment-service
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+spring.main.allow-bean-definition-overriding=true

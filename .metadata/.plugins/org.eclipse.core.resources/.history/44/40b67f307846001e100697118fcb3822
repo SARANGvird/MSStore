@@ -1,0 +1,5 @@
+package com.Solution.in.config;
+
+public class ProductServiceConfig {
+
+}

@@ -1,0 +1,35 @@
+package com.Solution.in.serviceimpl;
+
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.Solution.in.model.Payment;
+import com.Solution.in.repository.PaymentRepository;
+import com.Solution.in.service.PaymentService;
+
+@Service
+public class PaymentServiceImpl implements PaymentService {
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    
+    @Override
+    public Payment createPayment(Payment payment) {
+        return paymentRepository.save(payment);
+    }
+
+    @Override
+    public Payment getPaymentById(String paymentId) {
+        return paymentRepository.findById(paymentId)
+                .orElse(null); // Handle the case where payment is not found
+    }
+
+    @Override
+    public List<Payment> getAllPayments() {
+        return paymentRepository.findAll();
+    }
+    
+    // You can add other payment-related methods here
+}

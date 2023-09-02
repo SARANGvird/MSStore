@@ -1,0 +1,10 @@
+package com.Solution.in.repository;
+
+
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import com.Solution.in.model.Payment;
+
+public interface PaymentRepository extends MongoRepository<Payment, String> {
+    // You can define custom query methods here if needed
+}

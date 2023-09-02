@@ -1,0 +1,5 @@
+package com.Solution.in.service;
+
+public interface productService {
+
+}

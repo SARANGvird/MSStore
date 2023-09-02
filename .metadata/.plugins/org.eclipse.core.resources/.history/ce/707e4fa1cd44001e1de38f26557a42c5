@@ -1,0 +1,15 @@
+
+server.port=8081 
+ 
+
+# PostgreSQL properties
+spring.datasource.url=jdbc:postgresql://localhost:3307/userservice
+spring.datasource.username=postgres
+spring.datasource.password=solution
+spring.datasource.driver-class-name=org.postgresql.Driver
+# Hibernate properties
+spring.jpa.hibernate.ddl-auto=update
+
+# Eureka properties
+spring.application.name=UserService
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka

@@ -1,0 +1,82 @@
+import com.Solution.in.model.Payment;
+import com.Solution.in.repository.PaymentRepository;
+import com.Solution.in.service.PaymentService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.List;
+
+@SpringBootConfiguration
+@AutoConfiguration
+public class PaymentIntegrationTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private PaymentService paymentService;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    @BeforeEach
+    public void setUp() {
+        // Perform any setup required before each test
+    }
+
+    @Test
+    public void testCreatePayment() throws Exception {
+        // Create a Payment object for testing
+        Payment payment = new Payment();
+        payment.setAmount(100.00);
+        payment.setStatus(Payment.PaymentStatus.PENDING);
+        payment.setUserId(123L);
+        payment.setProductId(456L);
+
+        // Send a POST request to create a payment
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/payments")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"amount\": 100.00, \"status\": \"PENDING\", \"userId\": 123, \"productId\": 456}")
+        )
+                .andExpect(MockMvcResultMatchers.status().isCreated());
+
+        // Verify that the payment was created
+        List<Payment> payments = paymentService.getAllPayments();
+        assert !payments.isEmpty();
+
+        // Clean up by deleting the created payment
+        paymentRepository.deleteById(payments.get(0).getId());
+    }
+
+    @Test
+    public void testGetPaymentById() throws Exception {
+        // Create a Payment object for testing
+        Payment payment = new Payment();
+        payment.setAmount(200.00);
+        payment.setStatus(Payment.PaymentStatus.SUCCESS);
+        payment.setUserId(456L);
+        payment.setProductId(789L);
+
+        // Save the payment to the database
+        paymentRepository.save(payment);
+
+        // Send a GET request to retrieve the payment by ID
+        mockMvc.perform(MockMvcRequestBuilders.get("/payments/" + payment.getId()))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        // Clean up by deleting the created payment
+        paymentRepository.deleteById(payment.getId());
+    }
+
+    // Add more integration tests for other endpoints and scenarios
+}

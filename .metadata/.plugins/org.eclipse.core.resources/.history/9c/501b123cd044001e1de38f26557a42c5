@@ -1,0 +1,5 @@
+package com.Solution.in.repository;
+
+public interface productRepository {
+
+}
